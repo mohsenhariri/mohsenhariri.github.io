@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Mohsen Hariri / Personal Website"
+title                    : ""
 title_separator          : "-"
 name                     : &name "Mohsen Hariri"
 description              : &description "personal description"
