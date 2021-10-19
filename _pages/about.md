@@ -1,5 +1,5 @@
 ---
-permalink: /cv
+permalink: /
 title: "the title!"
 excerpt: "About me"
 author_profile: true

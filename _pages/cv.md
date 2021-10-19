@@ -12,9 +12,8 @@ redirect_from:
 EDUCATION
 ======
 * B.Sc. in Electrical Engineering (Bioelectric), School of Electrical and Computer Engineering, University of Tehran, 2013
-  * Thesis: Evaluating and Analysis on Therapeutic Environment's Network Using SNMP Protocol  for Fault Detection and Management, Routing and Auto-discovery Supervised by Prof. Zoroofi 
-* Pre-University Diploma in Mathematics and Physics, Imam Sadegh Pre-University Center,  Tehran, Iran
-
+  * Thesis: Evaluating and Analysis on Therapeutic Environment's Network Using SNMP Protocol  for Fault Detection and Management, Routing and Auto-discovery Supervised by Prof. Zoroofi
+  
 RESEARCH INTEREST
 ======
 * Brain-Computer Interface
