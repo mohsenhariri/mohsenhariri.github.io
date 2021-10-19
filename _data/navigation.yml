@@ -5,14 +5,14 @@ main:
 
   # - title: "Talks"
   #   url: /talks/
-  - title: "Projects"
-    url: /portfolio/
+  # - title: "Projects"
+  #   url: /portfolio/
 
-  - title: "Teaching"
-    url: /teaching/
+  # - title: "Teaching"
+  #   url: /teaching/
 
-  - title: "Blog"
-    url: /year-archive/
+  # - title: "Blog"
+  #   url: /year-archive/
 
   # - title: "Portfolio"
   #   url: /portfolio/
