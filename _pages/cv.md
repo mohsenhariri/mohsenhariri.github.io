@@ -1,7 +1,7 @@
 ---
 layout: archive
 # title: "CV"
-permalink: /cv/
+permalink: /
 author_profile: true
 redirect_from:
   - /resume
@@ -13,7 +13,7 @@ EDUCATION
 ======
 * B.Sc. in Electrical Engineering (Bioelectric), School of Electrical and Computer Engineering, University of Tehran, 2013
   * Thesis: Evaluating and Analysis on Therapeutic Environment's Network Using SNMP Protocol  for Fault Detection and Management, Routing and Auto-discovery Supervised by Prof. Zoroofi
-  
+
 RESEARCH INTEREST
 ======
 * Brain-Computer Interface
