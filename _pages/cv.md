@@ -69,6 +69,7 @@ COMPUTER SKILLS
   * Email: Postfix
 
 * MicroSystem
+  * Docker and Kubernetes 
   * PubSub: RabbitMQ, Redis
 
 * Documentation and Data Representing
