@@ -2,6 +2,10 @@
 main:
   - title: "Curriculum Vitae"
     url: /cv/
+  
+  - title: "Presentation"
+    url: /presentation/
+  
 
   # - title: "Talks"
   #   url: /talks/
