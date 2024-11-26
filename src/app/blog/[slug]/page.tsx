@@ -1,8 +1,21 @@
-export default async function Page({
+import { getPostById } from "@/lib/post";
+
+export default async function Post({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ id: string }>;
 }) {
-  const slug = (await params).slug
-  return <div>My Post: {slug}</div>
+  const { id } = await params;
+
+  const { title, date, contentHtml } = await getPostById(id);
+
+  return (
+    <>
+      <div>
+        <h1>{title}</h1>
+        <p>{date.toString()}</p>
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    </>
+  );
 }
