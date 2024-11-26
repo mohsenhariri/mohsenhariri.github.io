@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkHtml from "remark-html";
+import remarkGfm from 'remark-gfm'
 import { Post } from "@/types/post";
 
 const postsDirectory = path.join(process.cwd(), "_posts");
@@ -18,8 +19,9 @@ export async function getPostBySlug(slug: string) {
   const { data, content } = matter(fileContents);
 
   const processedContent = await unified()
-    .use(remarkParse) // Parse markdown
-    .use(remarkHtml) // Convert markdown to HTML
+    .use(remarkParse) // 1. Parse markdown  
+    .use(remarkGfm) // 3. https://github.com/remarkjs/remark-gfm
+    .use(remarkHtml) // 2. Convert markdown to HTML
     .process(content);
 
   const contentHtml = processedContent.toString();
