@@ -24,13 +24,23 @@ Markdown supports six levels of headings:
 ###### Heading 6
 
 
-## Formula 
+## Math
+
+### Inline Math
+Here's an inline math equation: $E = mc^2$
+
+### Block Math
+And a block math equation:
+
+$$
+\sum_{i=1}^n i = \frac{n(n+1)}{2}
+$$
+
 
 $$
 \int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
 $$
 
-dsfd
 
 Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following equation.
 
@@ -38,16 +48,11 @@ $$
 L = \frac{1}{2} \rho v^2 S C_L
 $$
 
-## Mass-Energy Equivalence
-
-The mass-energy equivalence is described by the famous equation
+The mass-energy equivalence is described by the famous equation:
 
 $$
 E=mc^2
 $$
-
-
-
 
 ## Text Formatting
 
@@ -89,12 +94,25 @@ $$
 Use `console.log('Hello, world!');` for logging.
 
 ### Code Block
+
+JavaScript code block:
+
 ```javascript
 function greet() {
     console.log("Hello, Markdown!");
 }
 greet();
 ```
+
+Python code block:
+
+```python
+def greet():
+    print("Hello, Markdown!")
+greet()
+```
+
+ 
 
 ## Blockquotes
 
@@ -113,18 +131,6 @@ greet();
 | Data 1   | Data 2   | Data 3   |
 
 
-
-## Math
-
-### Inline Math
-Here's an inline math equation: $E = mc^2$
-
-### Block Math
-And a block math equation:
-
-$$
-\sum_{i=1}^n i = \frac{n(n+1)}{2}
-$$
 
 
 ## Task Lists
