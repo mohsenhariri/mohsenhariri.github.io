@@ -3,8 +3,15 @@ import path from "node:path";
 import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-import remarkHtml from "remark-html";
-import remarkGfm from 'remark-gfm'
+// import remarkHtml from "remark-html";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+
+import remarkRehype from "remark-rehype";
+import rehypeDocument from "rehype-document";
+import rehypeKatex from "rehype-katex";
+import rehypeStringify from "rehype-stringify";
+
 import { Post } from "@/types/post";
 
 const postsDirectory = path.join(process.cwd(), "_posts");
@@ -18,12 +25,36 @@ export async function getPostBySlug(slug: string) {
 
   const { data, content } = matter(fileContents);
 
-  const processedContent = await unified()
-    .use(remarkParse) // 1. Parse markdown  
-    .use(remarkGfm) // 3. https://github.com/remarkjs/remark-gfm
-    .use(remarkHtml) // 2. Convert markdown to HTML
-    .process(content);
+  // // First try, parse md, convert to html
+  // const processedContent = await unified()
+  // .use(remarkParse) // Parse markdown
+  // .use(remarkHtml) // Convert markdown to HTML
+  // .process(content);
 
+  // // Second try, like the first one, but with gfm
+  // const processedContent = await unified()
+  // .use(remarkParse) // Parse markdown
+  // .use(remarkGfm) // https://github.com/remarkjs/remark-gfm
+  // .use(remarkHtml) // Convert markdown to HTML
+  // .process(content);
+
+  // Third try, Add math support
+  // KaTeX seems to be the best option for math support in markdown
+  // so I needed to use rehype, now literally 'unified' is needed
+  const processedContent = await unified()
+    .use(remarkParse) // Parse markdown
+    .use(remarkGfm) // Support for GFM
+    .use(remarkMath) // Support for math
+    .use(remarkRehype) // plugin that turns markdown into HTML to support rehype
+
+    .use(rehypeDocument, {
+      // Get the latest one from: <https://katex.org/docs/browser>.
+      css: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
+    }) // added this to support KaTeX, custom CSS
+    .use(rehypeKatex) // https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex
+    .use(rehypeStringify)
+    // .use(remarkHtml) // rehypeStringify is the same as remarkHtml but for rehype
+    .process(content);
   const contentHtml = processedContent.toString();
 
   return { slug: realSlug, contentHtml, ...data } as Post;

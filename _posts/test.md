@@ -24,6 +24,30 @@ Markdown supports six levels of headings:
 ###### Heading 6
 
 
+## Formula 
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+
+dsfd
+
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following equation.
+
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$
+
+## Mass-Energy Equivalence
+
+The mass-energy equivalence is described by the famous equation
+
+$$
+E=mc^2
+$$
+
+
+
 
 ## Text Formatting
 
