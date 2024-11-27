@@ -19,14 +19,7 @@ export default async function Post(props: Params) {
 
   const { title, date, contentHtml } = post;
 
-  console.log("title: ", title);
-  console.log("date: ", date);
-
-  return (
-    <article className="prose dark:prose-invert">
-      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-    </article>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
 }
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
