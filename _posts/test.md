@@ -2,6 +2,20 @@
 title: "Markdown and Gray-Matter Features Demo"
 author: "Your Name"
 date: "2024-11-26"
+toc:
+  - name: Introduction
+  - name: When do Models stop Generating New Tokens?
+  - name: Motivating Experiments
+    subsections:
+    - name: Block-wise Analysis
+    - name: Token-wise Analysis
+  - name: Proposed Methods
+    subsections:
+    - name: Suppressing the EOS 
+    - name: Modified Sampling Method Post-EOS
+    - name: Regnerating Prior to EOS
+    - name: Regenerating and Resampling Prior to EOS with Dynamic Temperature Adjustment
+  - name: Conclusion and Looking Forward
 tags: 
   - markdown
   - gray-matter
@@ -52,6 +66,49 @@ The mass-energy equivalence is described by the famous equation:
 
 $$
 E=mc^2
+$$
+
+### More Math Examples
+
+$$
+a^2 + b^2 = c^2
+$$
+
+$$
+\sum_{i=1}^n X_i
+$$
+
+$$
+x + \begin{bmatrix} 3 & 2 \\ 1 & 0 \end{bmatrix} = \begin{bmatrix} 6 & 3 \\ 7 & -1 \end{bmatrix}
+$$
+
+
+$$
+\begin{equation} \begin{pmatrix}
+a & b \cr
+c & d
+\end{pmatrix}
++
+\begin{pmatrix}
+e & f \cr
+g & h
+\end{pmatrix}
+\end{equation}
+$$
+
+$$
+\begin{equation} \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} = \begin{bmatrix} 14 \\ 32 \\ 50 \end{bmatrix} \end{equation}
+$$
+
+$$
+\begin{equation}
+\begin{bmatrix}
+1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+\end{bmatrix} \cdot \begin{bmatrix}
+1 \\ 2 \\ 3 \end{bmatrix} =
+\begin{bmatrix} 14 \\ 32 \\ 50
+\end{bmatrix}
+\end{equation}
 $$
 
 ## Text Formatting
