@@ -11,12 +11,34 @@ import rehypeDocument from "rehype-document";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeRaw from "rehype-raw"; // to support raw HTML, like <iframe>, <img>, etc.
-
+import { visit } from "unist-util-visit"; // to manipulate the AST, like changing the src of images
 import rehypeStringify from "rehype-stringify";
 
 import { Post } from "@/types/post";
+import { Root } from "hast";
 
 const postsDirectory = path.join(process.cwd(), "_posts");
+
+function rehypeImageSrcReplace() {
+  // This is a custom plugin to replace the src of images
+  // from _assets/ to /posts/
+  // and from png/jpg to webp
+  // num run optimize before this
+  return function transformer(tree: Root) {
+    visit(tree, "element", (node) => {
+      if (node.tagName === "img" && node.properties && node.properties.src) {
+        let src = node.properties.src;
+        if (typeof src === "string") {
+          if (src.startsWith("_assets/")) {
+            src = src.replace("_assets/", "/posts/");
+          }
+          src = src.replace(/\.(png|jpe?g)$/i, ".webp");
+          node.properties.src = src;
+        }
+      }
+    });
+  };
+}
 
 export async function getPostBySlug(slug: string) {
   const realSlug = slug.replace(/\.md$/, "");
@@ -73,6 +95,7 @@ export async function getPostBySlug(slug: string) {
     .use(rehypePrettyCode, {
       theme: "github-dark-dimmed",
     }) // https://rehype-pretty.pages.dev/
+    .use(rehypeImageSrcReplace) // Custom plugin to replace image src
     .use(rehypeStringify)
     .process(content);
 
@@ -82,7 +105,8 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getPostSlugs() {
-  return fs.readdir(postsDirectory);
+  const files = await fs.readdir(postsDirectory);
+  return files.filter((file) => file.endsWith(".md"));
 }
 
 export async function getAllPosts(): Promise<Post[]> {
