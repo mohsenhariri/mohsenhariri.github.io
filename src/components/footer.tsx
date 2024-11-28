@@ -14,7 +14,7 @@ export default function Footer() {
           <Link href="/posts" className={linkClasses}>
             Posts
           </Link>
-          <Link href="/contact" className={linkClasses}>
+          <Link href="/cv" className={linkClasses}>
             Contact
           </Link>
         </nav>

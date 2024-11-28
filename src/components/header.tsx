@@ -24,8 +24,8 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/about" className={linkClasses}>
-              About
+            <Link href="/cv" className={linkClasses}>
+              CV/Resume
             </Link>
           </li>
         </ul>

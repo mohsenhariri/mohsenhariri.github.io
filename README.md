@@ -21,6 +21,8 @@ Now, it has a name: [**`Desiderata Kashkul`**](https://mohsenhariri.github.io/)!
 
 ## Improvements:
 - [ ] CV
+  - [X] iframe
+  - [ ] NextJS integration 
 - [ ] Author -> Author list
 - [ ] Add toc to posts
 - [ ] Better date, [this?](https://date-fns.org/)
