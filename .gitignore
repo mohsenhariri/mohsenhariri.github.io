@@ -1,2 +1,6 @@
 uncompiled/
 blog/
+node_modules
+.next
+*.d.ts
+out
