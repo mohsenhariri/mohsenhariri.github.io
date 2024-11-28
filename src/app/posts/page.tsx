@@ -22,7 +22,7 @@ export default async function Blog() {
                     {post.title}
                   </Link>
                 </h2>
-                <p className="text-sm text-muted mb-4">32-32-23</p>
+                <p className="text-sm text-muted mb-4"> {post.date} </p>
                 <p className="text-base text-text-secondary">
                   {post.description}
                 </p>

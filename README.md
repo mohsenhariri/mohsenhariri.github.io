@@ -17,6 +17,7 @@ Now, it has a name: [**`Kashkul of Desiderata`**](https://mohsenhariri.github.io
 
 
 ## Improvements:
+- [ ] Author -> Author list
 - [ ] Add toc to posts
 - [ ] Better date, [this?](https://date-fns.org/)
 - [ ] Tags
