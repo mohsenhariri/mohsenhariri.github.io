@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/posts",
+        permanent: true, // Indicates a permanent redirect with a 308 status code
+      },
+    ];
+  },
 };
 
 export default nextConfig;
