@@ -37,7 +37,7 @@ export default {
         muted: "var(--color-text-secondary)",
 
       },
-      typography: (theme) => ({
+      typography: (theme:any) => ({
         DEFAULT: {
           css: {
             maxWidth: "100%",

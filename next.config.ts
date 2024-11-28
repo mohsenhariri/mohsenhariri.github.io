@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  output: 'export', // Add your desired output configuration here
 };
 
 export default nextConfig;
