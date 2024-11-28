@@ -28,6 +28,19 @@ summary: "A demonstration of Markdown features and how to use gray-matter metada
 Welcome to this demo of Markdown's capabilities, including its integration with **gray-matter** frontmatter!
 
 
+## My Post with Images
+
+### Markdown Images
+
+![Alt text for image](/posts/test/bozdivan.jpg)
+
+
+### HTML Images
+
+<img src="/posts/test/bozdivan.jpg" alt="Alt text for image" width="100"/>
+<img src="/posts/test/bozdivan.jpg" alt="Alt text for image" width="50"/>
+
+
 This is `backtick` and this is **bold**.
 
 ## Headings

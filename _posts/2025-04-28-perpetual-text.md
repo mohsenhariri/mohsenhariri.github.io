@@ -108,8 +108,10 @@ Observation: All four metrics show an increasing probability of EOS token, decre
   <br>
   Figure 1: Block-Wise Analysis
 </div> -->
+<!-- 
+{% include figure.html path="assets/img/2025-04-28-perpetual-text/eos_token_stats_blockwise_100.png" class="img-fluid" caption="Figure 1: Block-Wise Analysis" %} -->
 
-{% include figure.html path="assets/img/2025-04-28-perpetual-text/eos_token_stats_blockwise_100.png" class="img-fluid" caption="Figure 1: Block-Wise Analysis" %}
+![Figure 1: Block-Wise Analysis](/posts/2025-04-28-perpetual-text/eos_token_stats_blockwise_100.png)
 
 <br><br>
 As observed, the average probability of the EOS token appearing per block spikes during the 8th block. This indicates that the model increasingly believes its current output sequence should end soon. Consequently, we see a decrease in the average information content of the EOS token per block.
@@ -134,7 +136,9 @@ Observation: Competition between the EOS token and the new line token (\n)
   Figure 2: Token-Wise Analysis, 0
 </div> -->
 
-{% include figure.html path="assets/img/2025-04-28-perpetual-text/prob_dist_0.png" class="img-fluid" caption="Figure 2: Token-Wise Analysis, 0" %}
+<!-- {% include figure.html path="assets/img/2025-04-28-perpetual-text/prob_dist_0.png" class="img-fluid" caption="Figure 2: Token-Wise Analysis, 0" %} -->
+
+![Figure 2: Token-Wise Analysis, 0](/posts/2025-04-28-perpetual-text/prob_dist_0.png)
 
 <br><br>
 
@@ -147,7 +151,9 @@ In figure 2, we can see that based on the previous context of the new line token
   Figure 3: Token-Wise Analysis, 4
 </div> -->
 
-{% include figure.html path="assets/img/2025-04-28-perpetual-text/prob_dist_4.png" class="img-fluid" caption="Figure 3: Token-Wise Analysis, 4" %}
+<!-- {% include figure.html path="assets/img/2025-04-28-perpetual-text/prob_dist_4.png" class="img-fluid" caption="Figure 3: Token-Wise Analysis, 4" %} -->
+
+![Figure 3: Token-Wise Analysis, 4](/posts/2025-04-28-perpetual-text/prob_dist_4.png)
 
 <br><br>
 In figure 3, we can see that the new line token was predicted 3 times before the EOS token took over for highest probability (with a period inbetween). Since the model is deciding between \n or EOS, we can say that the *previous tokens are getting less effective to the next predictions*. This means that the model is not able to provide more consistent context related to the previous tokens, and therefore wants to “halt” or go to new context. 

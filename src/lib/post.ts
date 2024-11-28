@@ -3,14 +3,14 @@ import path from "node:path";
 import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-// import remarkHtml from "remark-html";
+// import remarkHtml from "remark-html"; // either this or remark-rehype
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-
 import remarkRehype from "remark-rehype";
 import rehypeDocument from "rehype-document";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeRaw from "rehype-raw"; // to support raw HTML, like <iframe>, <img>, etc.
 
 import rehypeStringify from "rehype-stringify";
 
@@ -62,7 +62,9 @@ export async function getPostBySlug(slug: string) {
     .use(remarkParse) // Parse markdown
     .use(remarkGfm) // Support for GFM
     .use(remarkMath) // Support for math
-    .use(remarkRehype) // plugin that turns markdown into HTML to support rehype
+    // .use(remarkRehype) // plugin that turns markdown into HTML to support rehype
+    .use(remarkRehype, { allowDangerousHtml: true }) // Allow HTML inside Markdown
+    .use(rehypeRaw) // Process raw HTML https://github.com/rehypejs/rehype-raw
     .use(rehypeDocument, {
       // Get the latest one from: <https://katex.org/docs/browser>.
       css: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
