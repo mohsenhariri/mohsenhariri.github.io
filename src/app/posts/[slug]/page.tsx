@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SITE_TITLE } from "@/lib/constants";
 
 import { getAllPosts, getPostBySlug } from "@/lib/post";
 
@@ -30,7 +31,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     return notFound();
   }
 
-  const title = `${post.title} | Blog`;
+  const title = `${post.title} | ${SITE_TITLE} 🦖`;
 
   return {
     title,

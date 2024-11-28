@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Footer() {
   const linkClasses =
-    "hover:underline text-gray-800 dark:text-gray-200 transition-colors";
+    "hover:underline text-text dark:text-text-light transition-colors";
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-t border-gray-200 dark:border-gray-700 py-6">
+    <footer className="bg-bg-light dark:bg-bg text-text dark:text-text-light border-t border-grey dark:border-dimGrey py-6">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
         <nav className="flex space-x-6 text-sm md:text-base">
           <Link href="/" className={linkClasses}>

@@ -2,14 +2,14 @@ import Link from "next/link";
 
 export default function Header() {
   const linkClasses =
-    "text-gray-800 dark:text-gray-200 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors";
+    "text-text dark:text-text-light hover:text-accent dark:hover:text-accent-light transition-colors";
 
   return (
-    <header className="bg-gray-100 dark:bg-gray-800 shadow-sm dark:shadow-lg">
+    <header className="bg-bg-light dark:bg-bg shadow-sm dark:shadow-lg">
       <nav className="container mx-auto flex justify-between items-center py-4 px-8">
         <div className="text-xl font-bold">
-          <Link href="/" className="text-gray-800 dark:text-gray-200">
-            Kashkul of Desiderata
+          <Link href="/" className="text-text dark:text-text-light">
+            Desiderata Kashkul
           </Link>
         </div>
         <ul className="flex space-x-4">

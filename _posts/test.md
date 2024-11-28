@@ -26,6 +26,9 @@ summary: "A demonstration of Markdown features and how to use gray-matter metada
 
 Welcome to this demo of Markdown's capabilities, including its integration with **gray-matter** frontmatter!
 
+
+This is `backtick` and this is **bold**.
+
 ## Headings
 
 Markdown supports six levels of headings:
