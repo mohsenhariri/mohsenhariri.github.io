@@ -6,7 +6,8 @@ type Author = {
 export type Post = {
   slug: string;
   title: string;
-  date: Date;
+  date: string;
+  description: string;
   coverImage: string;
   author: Author;
   excerpt: string;
