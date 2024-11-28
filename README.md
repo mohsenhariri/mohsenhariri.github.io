@@ -10,6 +10,13 @@ Now, it has a name: [**`Kashkul of Desiderata`**](https://mohsenhariri.github.io
   - [X] It seems that `KaTeX` is a good choice! **P.S.: Indeed, it is!**
 - [X] Render code blocks
 - [X] CSS 😟
-- [ ] Dark mode
+- [X] Dark mode
   - [ ] Handled with `useEffect` and `localStorage`, but am not satisfied with it!
 - [ ] Complexity slider
+- [ ] Develop something for home page
+
+
+## Improvements:
+- [ ] Add toc to posts
+- [ ] Better date, [this?](https://date-fns.org/)
+- [ ] Tags
