@@ -34,6 +34,8 @@ export default {
         dimPurple: "var(--dimPurple)",
         grey: "var(--grey)",
         dimGrey: "var(--dimGrey)",
+        muted: "var(--color-text-secondary)",
+
       },
       typography: (theme) => ({
         DEFAULT: {
