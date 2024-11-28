@@ -2,6 +2,7 @@
 title: "Markdown and Gray-Matter Features Demo"
 author: "Your Name"
 date: "2024-11-26"
+description: "A demonstration of Markdown features and how to use gray-matter metadata."
 toc:
   - name: Introduction
   - name: When do Models stop Generating New Tokens?
