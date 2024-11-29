@@ -20,6 +20,8 @@ Now, it has a name: [**`Desiderata Kashkul`**](https://mohsenhariri.github.io/)!
 - [ ] Complexity slider
 - [ ] Develop something for home page
 - [x] Assets optimization
+- [] [Mermaid](https://mermaid-js.github.io/mermaid/#/)
+- [] [TikZ](https://texample.net/tikz/), Should I use [TikZJax](https://tikzjax.com/)?
 
 ## Improvements:
 
@@ -27,7 +29,7 @@ Now, it has a name: [**`Desiderata Kashkul`**](https://mohsenhariri.github.io/)!
   - [x] iframe
   - [ ] NextJS integration
 - [ ] Author -> Author list
-- [ ] Add toc to posts
+- [X] Add toc to posts
 - [ ] Better date, [this?](https://date-fns.org/)
 - [ ] Tags
 - [ ] Isn't it better to convert images to base64 and store them in md files? 🤔
