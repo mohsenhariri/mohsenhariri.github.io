@@ -13,64 +13,82 @@ type Params = {
 
 interface ToCProps {
   tocGen: TocItem[];
+  activeId?: string;
 }
 
-function ToC({ tocGen }: ToCProps) {
-  if (!tocGen || tocGen.length === 0) return null;
+const TableOfContents = ({ tocGen, activeId }: ToCProps) => {
+  if (!tocGen?.length) return null;
 
   return (
-    <div className="md:w-1/4 w-full">
-      <nav className="toc p-4 bg-bg-light dark:bg-bg rounded-lg border border-grey dark:border-dimGrey md:sticky md:top-20">
+    <aside className="md:w-1/4 w-full" aria-label="Table of contents">
+      <nav
+        className="p-4 bg-bg-light dark:bg-bg rounded-lg border border-grey 
+        dark:border-dimGrey md:sticky md:top-20"
+        aria-label="Table of contents navigation"
+      >
         <h2 className="text-xl font-bold mb-4">Contents</h2>
         <ul className="space-y-2">
           {tocGen.map((item) => (
             <li
               key={item.id}
-              className={`hover:text-accent dark:hover:text-accent-light ${
-                item.depth > 1 ? "ml-4" : ""
-              }`}
+              className={`
+                ${item.depth > 1 ? "ml-4" : ""}
+                ${activeId === item.id ? "text-accent dark:text-accent-light" : ""}
+              `}
             >
-              <a href={`#${item.id}`} className="transition-colors">
+              <a
+                href={`#${item.id}`}
+                className="hover:text-accent dark:hover:text-accent-light transition-colors"
+                aria-current={activeId === item.id ? "true" : undefined}
+              >
                 {item.text}
               </a>
             </li>
           ))}
         </ul>
       </nav>
-    </div>
+    </aside>
   );
-}
+};
 
+export default async function PostPage(props: Params) {
+  try {
+    const params = await props.params;
 
-// Post Component
-export default async function Post(props: Params) {
-  const params = await props.params;
-  const post = await getPostBySlug(params.slug);
+    const post = await getPostBySlug(params.slug);
 
-  if (!post) {
-    return notFound();
-  }
+    if (!post) return notFound();
 
-  const { tocGen, contentHtml } = post;
+    const { tocGen, contentHtml, title, date } = post;
 
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="p-6 rounded-lg border-grey">
-        <div className="flex flex-col md:flex-row">
-          <ToC tocGen={tocGen} />
+    return (
+      <article className="min-h-screen py-8 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <header className="mb-8">
+            <h1 className="text-3xl font-bold mb-2">{title}</h1>
+            <time dateTime={date} className="text-text-light">
+              {new Date(date).toLocaleDateString()}
+            </time>
+          </header>
 
-          <div className="md:w-3/4 w-full">
+          <div className="flex flex-col md:flex-row gap-8">
+            <TableOfContents tocGen={tocGen} />
+
             <article
-              className="prose prose-lg bg-bg-light dark:bg-bg text-text dark:text-text-light border border-grey dark:border-dimGrey rounded-lg p-6 shadow-sm dark:shadow-lg transition-colors w-full"
+              className="md:w-3/4 w-full prose prose-lg bg-bg-light dark:bg-bg 
+              text-text dark:text-text-light rounded-lg p-6 shadow-sm"
               dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
           </div>
         </div>
-      </div>
-    </div>
-  );
+      </article>
+    );
+  } catch (error) {
+    // console.error('Error loading post:', error);
+    console.error("Error loading post");
+    return notFound();
+  }
 }
-
 
 // Metadata and Static Params functions remain the same...
 export async function generateMetadata(props: Params): Promise<Metadata> {
