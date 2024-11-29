@@ -22,13 +22,14 @@ Now, it has a name: [**`Desiderata Kashkul`**](https://mohsenhariri.github.io/)!
 - [x] Assets optimization
 - [] [Mermaid](https://mermaid-js.github.io/mermaid/#/)
 - [] [TikZ](https://texample.net/tikz/), Should I use [TikZJax](https://tikzjax.com/)?
+- [] view mode: compact, normal, full
 
 ## Improvements:
 
 - [ ] CV
   - [x] iframe
   - [ ] NextJS integration
-- [ ] Author -> Author list
+- [X] Author -> Author list
 - [X] Add toc to posts
 - [ ] Better date, [this?](https://date-fns.org/)
 - [ ] Tags
