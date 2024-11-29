@@ -16,6 +16,7 @@ import rehypeStringify from "rehype-stringify";
 
 import { Post } from "@/types/post";
 import { Root } from "hast";
+import { toString } from "hast-util-to-string";
 
 const postsDirectory = path.join(process.cwd(), "_posts");
 
@@ -48,37 +49,7 @@ export async function getPostBySlug(slug: string) {
   const fileContents = await fs.readFile(postPath, "utf8");
 
   const { data, content } = matter(fileContents);
-
-  // // First try, parse md, convert to html
-  // const processedContent = await unified()
-  // .use(remarkParse) // Parse markdown
-  // .use(remarkHtml) // Convert markdown to HTML
-  // .process(content);
-
-  // // Second try, like the first one, but with gfm
-  // const processedContent = await unified()
-  // .use(remarkParse) // Parse markdown
-  // .use(remarkGfm) // https://github.com/remarkjs/remark-gfm
-  // .use(remarkHtml) // Convert markdown to HTML
-  // .process(content);
-
-  // // Third try, Add math support
-  // // KaTeX seems to be the best option for math support in markdown
-  // // so I needed to use rehype, now literally 'unified' is needed
-  // const processedContent = await unified()
-  //   .use(remarkParse) // Parse markdown
-  //   .use(remarkGfm) // Support for GFM
-  //   .use(remarkMath) // Support for math
-  //   .use(remarkRehype) // plugin that turns markdown into HTML to support rehype
-
-  //   .use(rehypeDocument, {
-  //     // Get the latest one from: <https://katex.org/docs/browser>.
-  //     css: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
-  //   }) // added this to support KaTeX, custom CSS
-  //   .use(rehypeKatex) // https://github.com/remarkjs/remark-math/tree/main/packages/rehype-katex
-  //   .use(rehypeStringify)
-  //   // .use(remarkHtml) // rehypeStringify is the same as remarkHtml but for rehype
-  //   .process(content);
+  const tocGen: { id: string; text: string; depth: number }[] = []; // Table of Contents array
 
   const processedContent = await unified()
     .use(remarkParse) // Parse markdown
@@ -87,6 +58,25 @@ export async function getPostBySlug(slug: string) {
     // .use(remarkRehype) // plugin that turns markdown into HTML to support rehype
     .use(remarkRehype, { allowDangerousHtml: true }) // Allow HTML inside Markdown
     .use(rehypeRaw) // Process raw HTML https://github.com/rehypejs/rehype-raw
+
+    .use(() => (tree: Root) => {
+      visit(tree, "element", (node) => {
+        if (
+          ["h1", "h2", "h3", "h4", "h5", "h6"].includes(node.tagName) &&
+          node.properties
+        ) {
+          const depth = parseInt(node.tagName[1], 10); // h1 => 1, h2 => 2, etc.
+          const text = toString(node); // Get the inner text of the heading
+          const id = text
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^a-z0-9-]/g, ""); 
+          node.properties.id = id; 
+          tocGen.push({ id, text, depth });
+        }
+      });
+    })
+
     .use(rehypeDocument, {
       // Get the latest one from: <https://katex.org/docs/browser>.
       css: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
@@ -101,7 +91,9 @@ export async function getPostBySlug(slug: string) {
 
   const contentHtml = processedContent.toString();
 
-  return { slug: realSlug, contentHtml, ...data } as Post;
+  // console.log("toc", typeof toc, toc);
+
+  return { slug: realSlug, tocGen, contentHtml, ...data } as Post;
 }
 
 export async function getPostSlugs() {
@@ -113,7 +105,7 @@ export async function getAllPosts(): Promise<Post[]> {
   const slugs = await getPostSlugs();
 
   const posts = await Promise.all(
-    slugs.map(async (slug) => await getPostBySlug(slug)),
+    slugs.map(async (slug) => await getPostBySlug(slug))
   );
 
   return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));

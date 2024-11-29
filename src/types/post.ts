@@ -3,6 +3,12 @@ type Author = {
   // picture: string;
 };
 
+export interface TocItem {
+  id: string;
+  text: string;
+  depth: number;
+}
+
 export type Post = {
   slug: string;
   title: string;
@@ -15,5 +21,7 @@ export type Post = {
     url: string;
   };
   contentHtml: string;
+  toc?: string;
+  tocGen: TocItem[];
   preview?: boolean;
 };
