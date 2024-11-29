@@ -5,31 +5,34 @@ export default async function Blog() {
   const allPosts = await getAllPosts();
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Posts</h1>
-      <div className="max-w-3xl mr-auto">
-        {/* <div className="max-w-3xl mr-auto ml-4"> */}
+    <main className="min-h-screen py-8">
+      <div className="container mx-auto px-4">
+        <section className="prose prose-lg bg-bg-light dark:bg-bg text-text dark:text-text-light border border-grey dark:border-dimGrey rounded-lg p-8 shadow-sm max-w-3xl mx-auto">
+          <h1>Blog Posts</h1>
 
-        <ul className="space-y-8">
-          {allPosts.map((post) => (
-            <li key={post.slug}>
-              <article className="pb-6">
-                <h2 className="text-2xl font-semibold mb-2">
-                  <Link
-                    href={`/posts/${post.slug}`}
-                    className="text-primary hover:text-accent transition-colors"
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="text-sm text-muted mb-4"> {post.date} </p>
-                <p className="text-base text-text-secondary">
-                  {post.description}
-                </p>
-              </article>
-            </li>
-          ))}
-        </ul>
+          <ul className="space-y-6 list-none p-0">
+            {allPosts.map((post) => (
+              <li key={post.slug}>
+                <article>
+                  <h2 className="mb-2">
+                    <Link
+                      href={`/posts/${post.slug}`}
+                      className="hover:text-accent dark:hover:text-accent-light transition-colors"
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <time className="text-sm text-text-light block mb-2">
+                    {post.date}
+                  </time>
+                  <p className="text-text-secondary dark:text-text-light">
+                    {post.description}
+                  </p>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </main>
   );
