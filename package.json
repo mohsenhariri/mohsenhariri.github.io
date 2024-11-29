@@ -1,7 +1,20 @@
 {
   "name": "mohsenhariri.github.io",
   "homepage": "https://mohsenhariri.github.io",
+  "description": "Static blog built with Next.js",
   "version": "0.1.0",
+  "author": "Mohsen Hariri <mhariri68@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohsenhariri/mohsenhariri.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "static site",
+    "nextjs",
+    "personal website",
+    "blog"
+  ],
   "private": true,
   "type": "module",
   "scripts": {
@@ -40,6 +53,7 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
+    "prettier": "^3.4.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
