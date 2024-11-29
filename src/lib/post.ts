@@ -113,7 +113,7 @@ export async function getAllPosts(): Promise<Post[]> {
   const slugs = await getPostSlugs();
 
   const posts = await Promise.all(
-    slugs.map(async (slug) => await getPostBySlug(slug))
+    slugs.map(async (slug) => await getPostBySlug(slug)),
   );
 
   return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));

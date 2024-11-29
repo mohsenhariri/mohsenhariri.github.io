@@ -51,5 +51,3 @@ clean:
 		@if [ -d "$(BUILD)" ]; then rm -r ./$(BUILD)/*; else echo "does not exist"; fi
 		@if [ -d "$(DIST)" ]; then rm -r ./$(DIST)/*; else echo "does not exist"; fi
 
-format:
-	prettier --write $(SRC)/**/*.{js,jsx,ts,tsx,json,css,scss,html,md}

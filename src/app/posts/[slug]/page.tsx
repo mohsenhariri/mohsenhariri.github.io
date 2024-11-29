@@ -18,7 +18,7 @@ export default async function Post(props: Params) {
     return notFound();
   }
 
-  const {contentHtml } = post;
+  const { contentHtml } = post;
 
   return <div dangerouslySetInnerHTML={{ __html: contentHtml }} />;
 }
