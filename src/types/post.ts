@@ -1,7 +1,9 @@
-type Author = {
+interface Author {
   name: string;
-  // picture: string;
-};
+  email?: string;
+}
+
+type Authors = Author[];
 
 export interface TocItem {
   id: string;
@@ -15,7 +17,7 @@ export type Post = {
   date: string;
   description: string;
   coverImage: string;
-  author: Author;
+  authors: Authors;
   excerpt: string;
   ogImage: {
     url: string;

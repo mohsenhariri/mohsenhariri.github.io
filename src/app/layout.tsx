@@ -51,8 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     // <html lang="en" className="dark">
-      <html lang="en" className="dark scroll-smooth">
-
+    <html lang="en" className="dark scroll-smooth">
       <head>
         <link
           rel="apple-touch-icon"

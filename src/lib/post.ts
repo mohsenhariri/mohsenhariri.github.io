@@ -70,8 +70,8 @@ export async function getPostBySlug(slug: string) {
           const id = text
             .toLowerCase()
             .replace(/\s+/g, "-")
-            .replace(/[^a-z0-9-]/g, ""); 
-          node.properties.id = id; 
+            .replace(/[^a-z0-9-]/g, "");
+          node.properties.id = id;
           tocGen.push({ id, text, depth });
         }
       });
@@ -105,7 +105,7 @@ export async function getAllPosts(): Promise<Post[]> {
   const slugs = await getPostSlugs();
 
   const posts = await Promise.all(
-    slugs.map(async (slug) => await getPostBySlug(slug))
+    slugs.map(async (slug) => await getPostBySlug(slug)),
   );
 
   return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));

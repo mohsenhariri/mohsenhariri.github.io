@@ -51,24 +51,63 @@ const TableOfContents = ({ tocGen, activeId }: ToCProps) => {
   );
 };
 
+const AuthorList = ({
+  authors,
+}: {
+  authors: Array<{ name?: string; email?: string }>;
+}) => {
+  if (!authors?.length) return null;
+
+  return (
+    <div className="flex items-center gap-2 text-sm text-text-light">
+      <span>By</span>
+      {authors.map((author, index) => (
+        <span key={index} className="flex items-center">
+          {author.name || "Anonymous"}
+          {author.email && (
+            <a
+              href={`mailto:${author.email}`}
+              className="ml-1 hover:text-accent dark:hover:text-accent-light transition-colors"
+              aria-label={`Email ${author.name || "author"}`}
+            >
+              ✉️
+            </a>
+          )}
+          {index < authors.length - 1 && <span className="mx-1">,</span>}
+        </span>
+      ))}
+    </div>
+  );
+};
+
 export default async function PostPage(props: Params) {
   try {
     const params = await props.params;
+
+    console.log("params:", params);
 
     const post = await getPostBySlug(params.slug);
 
     if (!post) return notFound();
 
-    const { tocGen, contentHtml, title, date } = post;
+    const { tocGen, contentHtml, title, date, authors } = post;
+
+    console.log(authors);
+
+    // authors is a list of objects with name and email
+    // [ { name: 'Anonymous' }, { email: 'name@mail.com' } ]
 
     return (
       <article className="min-h-screen py-8 px-4">
         <div className="container mx-auto max-w-6xl">
           <header className="mb-8">
             <h1 className="text-3xl font-bold mb-2">{title}</h1>
-            <time dateTime={date} className="text-text-light">
-              {new Date(date).toLocaleDateString()}
-            </time>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <time dateTime={date} className="text-text-light">
+                {new Date(date).toLocaleDateString()}
+              </time>
+              <AuthorList authors={authors} />
+            </div>
           </header>
 
           <div className="flex flex-col md:flex-row gap-8">
@@ -84,8 +123,7 @@ export default async function PostPage(props: Params) {
       </article>
     );
   } catch (error) {
-    // console.error('Error loading post:', error);
-    console.error("Error loading post");
+    console.error("Error loading post:", error);
     return notFound();
   }
 }
