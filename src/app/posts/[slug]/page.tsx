@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SITE_TITLE } from "@/lib/constants";
 import { TocItem } from "@/types/post";
-
+import DetailSlider from "@/components/detail-slider";
 import { getAllPosts, getPostBySlug } from "@/lib/post";
 
 type Params = {
@@ -83,19 +83,10 @@ const AuthorList = ({
 export default async function PostPage(props: Params) {
   try {
     const params = await props.params;
-
-    console.log("params:", params);
-
     const post = await getPostBySlug(params.slug);
-
     if (!post) return notFound();
 
     const { tocGen, contentHtml, title, date, authors } = post;
-
-    console.log(authors);
-
-    // authors is a list of objects with name and email
-    // [ { name: 'Anonymous' }, { email: 'name@mail.com' } ]
 
     return (
       <article className="min-h-screen py-8 px-4">
@@ -109,15 +100,18 @@ export default async function PostPage(props: Params) {
               <AuthorList authors={authors} />
             </div>
           </header>
-
           <div className="flex flex-col md:flex-row gap-8">
             <TableOfContents tocGen={tocGen} />
-
-            <article
-              className="md:w-3/4 w-full prose prose-lg bg-bg-light dark:bg-bg 
-              text-text dark:text-text-light rounded-lg p-6 shadow-sm"
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
+            <div className="md:w-3/4 w-full flex flex-col gap-4">
+              <div className="flex items-center justify-between p-4 bg-bg-light dark:bg-bg rounded-lg">
+                <DetailSlider />
+              </div>
+              <article
+                className="prose prose-lg bg-bg-light dark:bg-bg 
+                text-text dark:text-text-light rounded-lg p-6 shadow-sm"
+                dangerouslySetInnerHTML={{ __html: contentHtml }}
+              />
+            </div>
           </div>
         </div>
       </article>
@@ -128,7 +122,6 @@ export default async function PostPage(props: Params) {
   }
 }
 
-// Metadata and Static Params functions remain the same...
 export async function generateMetadata(props: Params): Promise<Metadata> {
   const params = await props.params;
   const post = await getPostBySlug(params.slug);
