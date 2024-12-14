@@ -12,7 +12,8 @@ interface PageProps {
 
 export default async function SlidePage({ params }: PageProps) {
   try {
-    const slide = await getSlideBySlug(params.slug);
+    const { slug } = await params;
+    const slide = await getSlideBySlug(slug);
 
     if (!slide) {
       return notFound();
@@ -32,23 +33,32 @@ export default async function SlidePage({ params }: PageProps) {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const slide = await getSlideBySlug(params.slug);
+  try {
+    const { slug } = await params;
+    const slide = await getSlideBySlug(slug);
 
-  if (!slide) {
+    if (!slide) {
+      return {
+        title: "Slide Not Found",
+        description: "",
+      };
+    }
+
+    const title = `${slide.title} | ${SITE_TITLE} 🦖`;
+
+    return {
+      title,
+      description: slide.description,
+      openGraph: {
+        title,
+        description: slide.description,
+      },
+    };
+  } catch (error) {
+    console.error("Failed to generate metadata for slide:", error);
     return {
       title: "Slide Not Found",
       description: "",
     };
   }
-
-  const title = `${slide.title} | ${SITE_TITLE} 🦖`;
-
-  return {
-    title,
-    description: slide.description,
-    openGraph: {
-      title,
-      description: slide.description,
-    },
-  };
 }
