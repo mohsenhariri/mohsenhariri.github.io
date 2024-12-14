@@ -15,3 +15,6 @@ start:
 
 optimize:
 	node scripts/copyOptimizeImages.js
+
+cp-slides:
+	node scripts/copyImagesSlides.js
