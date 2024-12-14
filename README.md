@@ -17,12 +17,14 @@ Now, it has a name: [**`Desiderata Kashkul`**](https://mohsenhariri.github.io/)!
 - [x] Dark mode
   - [ ] Handled with `useEffect` and `localStorage`, but am not satisfied with it!
 - [x] Makefile
-- [ ] Complexity slider
+- [X] Complexity slider
+  - [ ] Style it
 - [ ] Develop something for home page
 - [x] Assets optimization
 - [ ] [Mermaid](https://mermaid-js.github.io/mermaid/#/)
 - [ ] [TikZ](https://texample.net/tikz/), Should I use [TikZJax](https://tikzjax.com/)?
 - [ ] view mode: compact, normal, full
+- [ ] Supporting Slides (reveal.js?)
 
 ## Improvements:
 
@@ -35,6 +37,8 @@ Now, it has a name: [**`Desiderata Kashkul`**](https://mohsenhariri.github.io/)!
 - [ ] Tags
 - [ ] Isn't it better to convert images to base64 and store them in md files? 🤔
 - [x] Add static directory for `_posts`'s assets. **P.S.**: this is deprecated in NextJS, instead I used [this approach](#Assets-Optimization).
+- [ ] Markdown formatter
+- [ ] Commit to a post?
 
 Things to read:
 
